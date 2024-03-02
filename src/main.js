@@ -1,14 +1,33 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, Menu, Tray} = require('electron');
 const path = require('path');
-
+const main = require("./components/Main");
+let tray = null;
+let mainWindow = null;
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
     app.quit();
 }
 
 const createWindow = () => {
+
+    tray = new Tray('D:\\WebStormProjects\\iminfo\\src\\assets\\icons\\icon.png'); // Path to your tray icon
+    const contextMenu = Menu.buildFromTemplate([
+        {
+            label: 'Show App', click: function () {
+                mainWindow.show();
+            }
+        },
+        {
+            label: 'Quit', click: function () {
+                app.isQuiting = true;
+                app.quit();
+            }
+        }
+    ]);
+
+
     // Create the browser window.
-    const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
@@ -16,10 +35,29 @@ const createWindow = () => {
         },
     });
 
-    mainWindow.setMenu(null);
+
+    tray.setToolTip('IM-Info');
+    tray.setContextMenu(contextMenu);
+    tray.on('double-click', () => {
+        if (mainWindow.isVisible()) {
+            mainWindow.hide();
+        } else {
+            mainWindow.show();
+        }
+    });
+    // Hide the window when it is closed
+    mainWindow.on('close', function (event) {
+        if (!app.isQuiting) {
+            event.preventDefault();
+            mainWindow.hide();
+        }
+        return false;
+    });
 
     // and load the index.html of the app.
     mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+
+    //mainWindow.setMenu(null)
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
@@ -44,7 +82,11 @@ app.on('activate', () => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) {
         createWindow();
+    } else {
+        mainWindow.show();
     }
+
+
 });
 
 // In this file you can include the rest of your app's specific main process
