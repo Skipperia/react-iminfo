@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Agent = () => {
+const Agent = (props) => {
     return (
         <div className="Agent">
-            <p> Agent: {this.props.agent}</p>
+            <p> Agent: {props.agent}</p>
         </div>
     );
 };

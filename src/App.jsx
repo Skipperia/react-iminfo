@@ -5,8 +5,9 @@ import Main from "./components/Main.jsx";
 function App() {
     return (
         <div>
-            <h1>💖 Hello World!</h1>
-            <p>Welcome to your Electron asdasd.</p>
+            <h1>💖 Hello World!!</h1>
+            <p>Welcome to youdsa Electron shalom!.</p>
+            <Main/>
             <Footer/>
         </div>
     );
