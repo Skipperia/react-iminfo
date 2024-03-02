@@ -1,9 +1,11 @@
-const {app, BrowserWindow, Menu, Tray} = require('electron');
+const {app, BrowserWindow, Menu, Tray, Notification} = require('electron');
 const path = require('path');
 const main = require("./components/Main");
 let tray = null;
 let mainWindow = null;
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
+if (process.platform === 'win32') {
+    app.setAppUserModelId(app.name);
+}// Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
     app.quit();
 }
@@ -24,6 +26,23 @@ const createWindow = () => {
             }
         }
     ]);
+
+    function showNotification(title, body) {
+        const notification = new Notification({
+            title,
+            body: body,
+            // Optional: Add an icon to the notification
+            icon: 'D:\\WebStormProjects\\iminfo\\src\\assets\\icons\\icon.png'
+        });
+
+        notification.onclick = () => {
+            console.log('Notification clicked');
+        };
+        notification.show();
+
+    }
+
+    showNotification("dsa", "yabadabdo");
 
 
     // Create the browser window.
