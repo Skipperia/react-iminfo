@@ -1,6 +1,6 @@
 import React from 'react';
 import Agent from "./Agent.jsx";
-import '../assets/styles/Main.css'
+//import '../assets/styles/Main.css'
 
 const Main = () => {
     return (
