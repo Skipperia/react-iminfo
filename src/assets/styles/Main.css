@@ -1,7 +1,6 @@
 .Main {
     display: grid;
     place-items: center;
-    height: 100vh; /* Adjust the height as needed */
-    width: 100vw; /* Adjust the width as needed */
-    border: 10px solid #ff0000;
+    height: 15px; /* Adjust the height as needed */
+    width: 15px; /* Adjust the width as needed */
 }

@@ -5,8 +5,8 @@ import Main from "./components/Main.jsx";
 function App() {
     return (
         <div>
-            <h1>💖 Hello World!!</h1>
-            <p>Welcome to youdsa Electron shalom!.</p>
+            <h1>Shalom to iminfo</h1>
+            <p>here you get all your task info and how map download fails</p>
             <Main/>
             <Footer/>
         </div>
