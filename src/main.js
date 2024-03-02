@@ -35,8 +35,16 @@ const createWindow = () => {
         },
     });
 
+
     tray.setToolTip('IM-Info');
     tray.setContextMenu(contextMenu);
+    tray.on('double-click', () => {
+        if (mainWindow.isVisible()) {
+            mainWindow.hide();
+        } else {
+            mainWindow.show();
+        }
+    });
     // Hide the window when it is closed
     mainWindow.on('close', function (event) {
         if (!app.isQuiting) {
