@@ -12,7 +12,7 @@ if (require('electron-squirrel-startup')) {
 
 const createWindow = () => {
 
-    tray = new Tray('D:\\WebStormProjects\\iminfo\\src\\assets\\icons\\icon.png'); // Path to your tray icon
+    tray = new Tray(process.cwd() + '\\src\\assets\\icons\\icon.png'); // Path to your tray icon
     const contextMenu = Menu.buildFromTemplate([
         {
             label: 'Show App', click: function () {
@@ -32,7 +32,7 @@ const createWindow = () => {
             title,
             body: body,
             // Optional: Add an icon to the notification
-            icon: 'D:\\WebStormProjects\\iminfo\\src\\assets\\icons\\icon.png'
+            icon: process.cwd() + '\\src\\assets\\icons\\icon.png'
         });
 
         notification.onclick = () => {
