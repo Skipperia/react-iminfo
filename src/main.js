@@ -31,7 +31,6 @@ const createWindow = () => {
         const notification = new Notification({
             title,
             body: body,
-            // Optional: Add an icon to the notification
             icon: process.cwd() + '\\src\\assets\\icons\\icon.png'
         });
 
