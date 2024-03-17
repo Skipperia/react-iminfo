@@ -1,12 +1,25 @@
 import axios from 'axios'
+// import { Notification } from "electron";
+
+
+// function showNotification(title, body) {
+//     const notification = new Notification({
+//         title,
+//         body: body,
+//         icon: process.cwd() + '\\src\\assets\\icons\\icon.png'
+//     });
+
+//     notification.onclick = () => {
+//         console.log('Notification clicked');
+//     };
+//     notification.show();
+// }
 
 const getTasks = async () => {
     //await axios.get()
 }
 
-const openPopup = () => {
-    window.open(`file://src/assets/htmls/popup.html`, 'popup', 'width=200,height=200');
-}
+
 
 const getAgentInfo = async (agent) => {
     //get agent info
@@ -33,5 +46,5 @@ const getAgentInfo = async (agent) => {
 }
 
 export {
-    getTasks, getAgentInfo, openPopup
+    getTasks, getAgentInfo 
 }
