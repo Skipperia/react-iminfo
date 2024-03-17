@@ -1,6 +1,4 @@
-const {app, BrowserWindow, Menu, Tray, Notification} = require('electron');
-const path = require('path');
-const main = require("./components/Main");
+const { app, BrowserWindow, Menu, Tray, ipcMain } = require('electron');
 let tray = null;
 let mainWindow = null;
 if (process.platform === 'win32') {
@@ -12,7 +10,7 @@ if (require('electron-squirrel-startup')) {
 
 const createWindow = () => {
 
-    tray = new Tray('D:\\WebStormProjects\\iminfo\\src\\assets\\icons\\icon.png'); // Path to your tray icon
+    tray = new Tray(process.cwd() + '\\src\\assets\\icons\\icon.png'); // Path to your tray icon
     const contextMenu = Menu.buildFromTemplate([
         {
             label: 'Show App', click: function () {
@@ -27,32 +25,18 @@ const createWindow = () => {
         }
     ]);
 
-    function showNotification(title, body) {
-        const notification = new Notification({
-            title,
-            body: body,
-            // Optional: Add an icon to the notification
-            icon: 'D:\\WebStormProjects\\iminfo\\src\\assets\\icons\\icon.png'
-        });
-
-        notification.onclick = () => {
-            console.log('Notification clicked');
-        };
-        notification.show();
-
-    }
-
-    showNotification("dsa", "yabadabdo");
-
-
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 550,
+        height: 650,
         webPreferences: {
+            nodeIntegration: true,
             preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
         },
     });
+
+
+
 
 
     tray.setToolTip('IM-Info');
@@ -64,6 +48,7 @@ const createWindow = () => {
             mainWindow.show();
         }
     });
+
     // Hide the window when it is closed
     mainWindow.on('close', function (event) {
         if (!app.isQuiting) {
@@ -80,6 +65,37 @@ const createWindow = () => {
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
+
+
+    // Listen for popup requests
+    ipcMain.on('show-popup', (event, message) => {
+        if (!popupWindow) {
+            popupWindow = new BrowserWindow({
+                width: 400,
+                height: 200,
+                parent: mainWindow, // optional: makes the popup a modal window
+                modal: true, // optional: makes the popup a modal window
+                webPreferences: {
+                    nodeIntegration: true,
+                    contextIsolation: false
+                }
+            });
+
+            popupWindow.on('closed', () => {
+                popupWindow = null;
+            });
+
+            popupWindow.loadFile('src/assets/htmls/popup.html');
+
+            // Send the message to the popup
+            popupWindow.webContents.on('did-finish-load', () => {
+                popupWindow.webContents.send('popup-message', message);
+            });
+        }
+    });
+
+
+
 };
 
 // This method will be called when Electron has finished
@@ -97,8 +113,6 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-    // On OS X it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) {
         createWindow();
     } else {

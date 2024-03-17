@@ -1,10 +1,27 @@
 import axios from 'axios'
+// import { Notification } from "electron";
+
+
+// function showNotification(title, body) {
+//     const notification = new Notification({
+//         title,
+//         body: body,
+//         icon: process.cwd() + '\\src\\assets\\icons\\icon.png'
+//     });
+
+//     notification.onclick = () => {
+//         console.log('Notification clicked');
+//     };
+//     notification.show();
+// }
 
 const getTasks = async () => {
     //await axios.get()
 }
 
-const getAgentInfo = (agent) => {
+
+
+const getAgentInfo = async (agent) => {
     //get agent info
     const agentData = {
         "version": "1.1.1",
@@ -13,9 +30,15 @@ const getAgentInfo = (agent) => {
     }
     switch (agent) {
         case "ELA" : {
+            // const res = await fetch("http://172.25.241.48:5789/version");
+            // const ver = res.text()
+            // console.log(ver);
             break;
         }
         case "EWA" : {
+            // const res= (await fetch("http://localhost:5789/version"));
+            // console.log(res);
+            agentData.ip = "N/A";
             break;
         }
     }
@@ -23,5 +46,5 @@ const getAgentInfo = (agent) => {
 }
 
 export {
-    getTasks, getAgentInfo
+    getTasks, getAgentInfo 
 }

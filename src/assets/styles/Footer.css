@@ -1,7 +1,9 @@
 .Footer {
     position: fixed;
     bottom: 0;
-    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
     background-color: #333;
     color: white;
     text-align: center;
