@@ -50,8 +50,23 @@ const createWindow = () => {
         height: 600,
         webPreferences: {
             preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+            contextIsolation: false, 
+            enableRemoteModule: true, 
+            webSecurity: false 
         },
     });
+
+    mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+        let popupWindow = new BrowserWindow({ width: 200, height: 300 });
+        
+        if (url.startsWith('http')) {
+            popupWindow.loadURL(url);
+        } else {
+            popupWindow.loadFile(path.join(__dirname, url));
+        }
+
+        return { action: 'deny' }; // Prevent the default behavior
+    })
 
 
     tray.setToolTip('IM-Info');

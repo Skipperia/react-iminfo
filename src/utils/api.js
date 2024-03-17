@@ -4,6 +4,10 @@ const getTasks = async () => {
     //await axios.get()
 }
 
+const openPopup = () => {
+    window.open(`file://src/assets/htmls/popup.html`, 'popup', 'width=200,height=200');
+}
+
 const getAgentInfo = async (agent) => {
     //get agent info
     const agentData = {
@@ -29,5 +33,5 @@ const getAgentInfo = async (agent) => {
 }
 
 export {
-    getTasks, getAgentInfo
+    getTasks, getAgentInfo, openPopup
 }
