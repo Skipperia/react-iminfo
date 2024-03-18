@@ -36,7 +36,6 @@ const createWindow = () => {
     });
 
 
-
     tray.setToolTip('IM-Info');
     tray.setContextMenu(contextMenu);
     tray.on('double-click', () => {
