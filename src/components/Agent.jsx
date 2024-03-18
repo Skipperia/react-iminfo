@@ -31,14 +31,13 @@ const Agent = (props) => {
 
     const legendTemplate = (
         <div className="flex align-items-center gap-2 px-2">
-            <Avatar image={agentImage} shape="square" />
+            <Avatar image={agentImage} shape="circle" />
             <span className="font-bold">{props.agent}</span>
         </div>
     );
 
     return (
-        <Fieldset legend={legendTemplate}>
-            <div> Agent: {props.agent}</div>
+        <Fieldset legend={legendTemplate} style={{padding: 0}}>
             <p> IP: {agentData.ip}</p>
             <p> Version: {agentData.version}</p>
         </Fieldset>

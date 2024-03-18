@@ -29,13 +29,19 @@ const getAgentInfo = async (agent) => {
         "name": "ayy"
     }
     switch (agent) {
-        case "ELA" : {
-            // const res = await fetch("http://172.25.241.48:5789/version");
-            // const ver = res.text()
+        case "ELA": {
+            try {
+                const res = await fetch("http://172.25.241.48:5789/version");
+                const ver = await res.text();
+                agentData.version = ver;
+            }
+            catch (e) {
+                console.log("a:" + e)
+            }
             // console.log(ver);
             break;
         }
-        case "EWA" : {
+        case "EWA": {
             // const res= (await fetch("http://localhost:5789/version"));
             // console.log(res);
             agentData.ip = "N/A";
@@ -46,5 +52,5 @@ const getAgentInfo = async (agent) => {
 }
 
 export {
-    getTasks, getAgentInfo 
+    getTasks, getAgentInfo
 }

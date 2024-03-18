@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button } from 'primereact/button';
+import { Card } from 'primereact/card';
+
 
 const Task = () => {
     const closePopup = () => {
@@ -14,10 +16,10 @@ const Task = () => {
 
 
     return (
-        <div className="Task">
+        <Card className="Task">
             <p>some task info here</p>
             <Button label="Primary" size='small' outlined onClick={showPopup} />
-        </div>
+        </Card>
     );
 };
 
