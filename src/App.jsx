@@ -1,11 +1,18 @@
 import React from "react";
 import MainPage from "./Views/MainPage.jsx";
+import { PrimeReactProvider } from 'primereact/api';
+
 
 function App() {
+    const value = {
+        ripple: true
+    };
+
+
     return (
-        <div>
+        <PrimeReactProvider value={value}>
             <MainPage />
-        </div>
+        </PrimeReactProvider>
     );
 }
 

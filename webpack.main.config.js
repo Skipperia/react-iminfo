@@ -9,10 +9,10 @@ module.exports = {
         rules: require('./webpack.rules'),
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.json']
+        extensions: ['.js', '.jsx', '.json', 'css'],
+        modules: ['node_modules'],
     },
     externals: {
         electron: 'commonjs electron'
     }
-
 };

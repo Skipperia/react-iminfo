@@ -1,4 +1,5 @@
 const { app, BrowserWindow, Menu, Tray, ipcMain } = require('electron');
+
 let tray = null;
 let mainWindow = null;
 if (process.platform === 'win32') {
@@ -27,8 +28,8 @@ const createWindow = () => {
 
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 550,
-        height: 650,
+        width: 600,
+        height: 900,
         webPreferences: {
             nodeIntegration: true,
             preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
@@ -103,7 +104,6 @@ const createWindow = () => {
     })
 
 };
-
 
 ipcMain.on('notification', (event, data) => {
     showNotification(data.title, data.body);

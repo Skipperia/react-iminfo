@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'primereact/button';
 
 const Task = () => {
     const closePopup = () => {
@@ -15,7 +16,7 @@ const Task = () => {
     return (
         <div className="Task">
             <p>some task info here</p>
-            <button onClick={showPopup}>Show Popup</button>
+            <Button label="Primary" size='small' outlined onClick={showPopup} />
         </div>
     );
 };

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../utils/api'
 import '../assets/styles/Agent.css'
+import { Fieldset } from 'primereact/fieldset';
+import { Avatar } from 'primereact/avatar';
 
 const Agent = (props) => {
 
@@ -17,14 +19,21 @@ const Agent = (props) => {
     }, []);
 
 
+    const legendTemplate = (
+        <div className="flex align-items-center gap-2 px-2">
+            <Avatar image="assets/icons/linuxicon.png" shape="square" />
+            <span className="font-bold"> Amy Elsner</span>
+        </div>
+    );
+
 
 
     return (
-        <div className="Agent">
+        <Fieldset legend={legendTemplate}>
             <div className="AgentTitle"> Agent: {props.agent}</div>
             <p> IP: {agentData.ip}</p>
             <p> Version: {agentData.version}</p>
-        </div>
+        </Fieldset>
     );
 };
 
