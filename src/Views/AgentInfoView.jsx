@@ -1,4 +1,5 @@
 import Agent from "../components/Agent.jsx";
+import '../assets/styles/AgentInfoView.css'
 import React from "react";
 
 function AgentInfoView() {
