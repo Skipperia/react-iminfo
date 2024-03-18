@@ -37,8 +37,6 @@ const createWindow = () => {
 
 
 
-
-
     tray.setToolTip('IM-Info');
     tray.setContextMenu(contextMenu);
     tray.on('double-click', () => {
@@ -66,33 +64,48 @@ const createWindow = () => {
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
 
-
+    let popupWindow;
     // Listen for popup requests
     ipcMain.on('show-popup', (event, message) => {
-        if (!popupWindow) {
-            popupWindow = new BrowserWindow({
-                width: 400,
-                height: 200,
-                parent: mainWindow, // optional: makes the popup a modal window
-                modal: true, // optional: makes the popup a modal window
-                webPreferences: {
-                    nodeIntegration: true,
-                    contextIsolation: false
-                }
-            });
+        popupWindow = new BrowserWindow({
+            width: 400,
+            height: 200,
+            parent: mainWindow, // optional: makes the popup a modal window
+            modal: true, // optional: makes the popup a modal window
+            webPreferences: {
+                nodeIntegration: true,
+                contextIsolation: false
+            }
+        });
 
-            popupWindow.on('closed', () => {
-                popupWindow = null;
-            });
+        popupWindow.setMenu(null)
 
-            popupWindow.loadFile('src/assets/htmls/popup.html');
+        popupWindow.on('closed', () => {
+            popupWindow = null;
+        });
 
-            // Send the message to the popup
-            popupWindow.webContents.on('did-finish-load', () => {
-                popupWindow.webContents.send('popup-message', message);
-            });
-        }
+
+
+        popupWindow.loadFile('src/assets/htmls/popup.html');
+
+        // Send the message to the popup
+        popupWindow.webContents.on('did-finish-load', () => {
+            popupWindow.webContents.send('message', message);
+        });
+
     });
+
+
+    ipcMain.on('close-popup', (event, message) => {
+        console.log("1")
+
+        if (popupWindow) {
+            console.log("2")
+
+            popupWindow.close();
+            popupWindow = null;
+        }
+    })
 
 
 
