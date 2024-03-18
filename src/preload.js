@@ -9,5 +9,6 @@ contextBridge.exposeInMainWorld('electron', {
     },
     openPopup: (data) => ipcRenderer.send('show-popup', data),
     onPopupResponse: (callback) => ipcRenderer.on('popup-message', callback),
-    closePopup: (data) => ipcRenderer.send('close-popup', data)
+    closePopup: (data) => ipcRenderer.send('close-popup', data),
+    notify: (data) => ipcRenderer.send('notification', data)
 });

@@ -7,6 +7,7 @@ const Task = () => {
 
     const showPopup = () => {
         window.electron.openPopup('special event');
+        window.electron.notify({ title: 'event', body: 'happend' });
         setTimeout(closePopup, 3000);
     };
 

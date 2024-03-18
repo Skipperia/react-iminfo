@@ -97,19 +97,18 @@ const createWindow = () => {
 
 
     ipcMain.on('close-popup', (event, message) => {
-        console.log("1")
-
         if (popupWindow) {
-            console.log("2")
-
             popupWindow.close();
             popupWindow = null;
         }
     })
 
-
-
 };
+
+
+ipcMain.on('notification', (event, data) => {
+    showNotification(data.title, data.body);
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -137,3 +136,19 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+import { Notification } from "electron";
+
+
+function showNotification(title, body) {
+    const notification = new Notification({
+        title,
+        body: body,
+        icon: process.cwd() + '\\src\\assets\\icons\\icon.png'
+    });
+
+    notification.onclick = () => {
+        console.log('Notification clicked');
+    };
+    notification.show();
+}
