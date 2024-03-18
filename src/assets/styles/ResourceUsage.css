@@ -1,0 +1,35 @@
+.resource-usage {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .resource {
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .progress {
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    background-color: #4caf50;
+    height: 20px;
+    line-height: 20px;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+  
