@@ -1,3 +1,4 @@
 .MainPage{
     padding-bottom: 60px; /* Height of the footer plus some extra space */
+    display: grid;
 }

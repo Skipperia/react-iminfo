@@ -37,7 +37,7 @@ const Agent = (props) => {
     );
 
     return (
-        <Fieldset legend={legendTemplate} style={{padding: 0}}>
+        <Fieldset className="Agent" legend={legendTemplate}>
             <p> IP: {agentData.ip}</p>
             <p> Version: {agentData.version}</p>
         </Fieldset>

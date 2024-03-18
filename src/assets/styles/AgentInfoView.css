@@ -1,3 +1,7 @@
 .AgentInfoView {
-    padding: 40px;
+    display: flex;
+    justify-content: space-around; /* Distributes space before, between, and after the items */
+    align-items: center; /* Aligns items vertically */
+    width: 100%;
+    padding: 2% 0%;    
 }
