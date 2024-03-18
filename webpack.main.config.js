@@ -10,5 +10,9 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json']
+    },
+    externals: {
+        electron: 'commonjs electron'
     }
+
 };

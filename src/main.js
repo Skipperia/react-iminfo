@@ -36,9 +36,6 @@ const createWindow = () => {
     });
 
 
-
-
-
     tray.setToolTip('IM-Info');
     tray.setContextMenu(contextMenu);
     tray.on('double-click', () => {
@@ -66,37 +63,51 @@ const createWindow = () => {
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
 
-
+    let popupWindow;
     // Listen for popup requests
     ipcMain.on('show-popup', (event, message) => {
-        if (!popupWindow) {
-            popupWindow = new BrowserWindow({
-                width: 400,
-                height: 200,
-                parent: mainWindow, // optional: makes the popup a modal window
-                modal: true, // optional: makes the popup a modal window
-                webPreferences: {
-                    nodeIntegration: true,
-                    contextIsolation: false
-                }
-            });
+        popupWindow = new BrowserWindow({
+            width: 400,
+            height: 200,
+            parent: mainWindow, // optional: makes the popup a modal window
+            modal: true, // optional: makes the popup a modal window
+            webPreferences: {
+                nodeIntegration: true,
+                contextIsolation: false
+            }
+        });
 
-            popupWindow.on('closed', () => {
-                popupWindow = null;
-            });
+        popupWindow.setMenu(null)
 
-            popupWindow.loadFile('src/assets/htmls/popup.html');
+        popupWindow.on('closed', () => {
+            popupWindow = null;
+        });
 
-            // Send the message to the popup
-            popupWindow.webContents.on('did-finish-load', () => {
-                popupWindow.webContents.send('popup-message', message);
-            });
-        }
+
+
+        popupWindow.loadFile('src/assets/htmls/popup.html');
+
+        // Send the message to the popup
+        popupWindow.webContents.on('did-finish-load', () => {
+            popupWindow.webContents.send('message', message);
+        });
+
     });
 
 
+    ipcMain.on('close-popup', (event, message) => {
+        if (popupWindow) {
+            popupWindow.close();
+            popupWindow = null;
+        }
+    })
 
 };
+
+
+ipcMain.on('notification', (event, data) => {
+    showNotification(data.title, data.body);
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -124,3 +135,19 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+import { Notification } from "electron";
+
+
+function showNotification(title, body) {
+    const notification = new Notification({
+        title,
+        body: body,
+        icon: process.cwd() + '\\src\\assets\\icons\\icon.png'
+    });
+
+    notification.onclick = () => {
+        console.log('Notification clicked');
+    };
+    notification.show();
+}
