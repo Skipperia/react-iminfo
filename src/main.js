@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, Tray, ipcMain } = require('electron');
+const {app, BrowserWindow, Menu, Tray, ipcMain} = require('electron');
 
 let tray = null;
 let mainWindow = null;
@@ -32,6 +32,7 @@ const createWindow = () => {
         height: 900,
         webPreferences: {
             nodeIntegration: true,
+            contextIsolation: true,
             preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
         },
     });
@@ -85,7 +86,6 @@ const createWindow = () => {
         });
 
 
-
         popupWindow.loadFile('src/assets/htmls/popup.html');
 
         // Send the message to the popup
@@ -107,7 +107,14 @@ const createWindow = () => {
 
 ipcMain.on('notification', (event, data) => {
     showNotification(data.title, data.body);
-})
+});
+
+ipcMain.on('getTaskData', (event, arg) => {
+    console.log(arg);
+    const data = {taskName: "download", progress: 50, component: "maps"};
+
+    event.reply('responseTaskData', data);
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -138,7 +145,7 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-import { Notification } from "electron";
+import {Notification} from "electron";
 
 
 function showNotification(title, body) {

@@ -6,7 +6,6 @@ ipcRenderer.on('message', (event, message) => {
 
 
 function closeWindow() {
-    console.log("dsadsa");
     ipcRenderer.send('close-popup');
 }
 
