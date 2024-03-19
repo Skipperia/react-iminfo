@@ -3,8 +3,10 @@ import TaskInfoView from "./TaskInfoView.jsx";
 import AgentInfoView from "./AgentInfoView.jsx";
 import ResourcesView from "./ResourcesView.jsx";
 import {Button} from 'primereact/button';
+import {ToggleButton} from 'primereact/togglebutton'
 import '../assets/styles/MainPage.css'
 import React, {useState} from "react";
+import Switch from '@mui/material/Switch'
 
 
 const MainPage = () => {
@@ -19,7 +21,8 @@ const MainPage = () => {
             <Header/>
             <h1> Shalom to iminfo</h1>
             <p>here you get all your task info and how map download fails</p>
-            <Button label="Advanced View" size='small' onClick={toggleAdvancedView} outlined/>
+            {/*<Button label="Advanced View" size='small' onClick={toggleAdvancedView} outlined/>*/}
+            <ToggleButton onChange={toggleAdvancedView} outlined></ToggleButton>
             <TaskInfoView isAdvancedView={isAdvancedView}/>
             <ResourcesView isAdvancedView={isAdvancedView}/>
             <AgentInfoView isAdvancedView={isAdvancedView}/>

@@ -33,6 +33,7 @@ const createWindow = () => {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: true,
+            resizable: false,
             preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
         },
     });
@@ -63,7 +64,7 @@ const createWindow = () => {
     //mainWindow.setMenu(null)
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
     let popupWindow;
     // Listen for popup requests
