@@ -31,9 +31,9 @@ const getAgentInfo = async (agent) => {
     switch (agent) {
         case "ELA": {
             try {
-                const res = await fetch("http://172.25.241.48:5789/version");
-                const ver = await res.text();
-                agentData.version = ver;
+                // const res = await fetch("http://172.25.241.48:5789/version");
+                // const ver = await res.text();
+                agentData.version = "1.2.2";
             }
             catch (e) {
                 console.log("a:" + e)

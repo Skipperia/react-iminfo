@@ -18,14 +18,14 @@
 // }
 
 
-
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import '../assets/styles/ResourceUsage.css'
-export default function ResourcesView() {
+
+export default function ResourcesView(props) {
 
     return (
         <div>
-            
+            //todo:add isAdvancedView={props.isAdvancedView}
         </div>
     );
 }
