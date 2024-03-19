@@ -21,8 +21,8 @@ const MainPage = () => {
             <p>here you get all your task info and how map download fails</p>
             <Button label="Advanced View" size='small' onClick={toggleAdvancedView} outlined/>
             <TaskInfoView isAdvancedView={isAdvancedView}/>
-            <AgentInfoView isAdvancedView={isAdvancedView}/>
             <ResourcesView isAdvancedView={isAdvancedView}/>
+            <AgentInfoView isAdvancedView={isAdvancedView}/>
         </div>
     )
 }
