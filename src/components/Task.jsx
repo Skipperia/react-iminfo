@@ -44,7 +44,7 @@ const Task = () => {
                 <Typography color="textSecondary" gutterBottom>
                     {taskData.component} installation progress
                 </Typography>
-                <LinearProgress variant="determinate" value={taskData.progress}/>
+                <LinearProgress variant="determinate" value={taskData.progress|| 0}/>
                 <Typography variant="body2">
                     {taskData.progress}%
                 </Typography>

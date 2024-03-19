@@ -50,7 +50,7 @@ export default function ResourcesView(props) {
                             <Typography color="textSecondary" gutterBottom>
                                 CPU Usage
                             </Typography>
-                            <LinearProgress variant="determinate" value={cpuUsage}/>
+                            <LinearProgress variant="determinate" value={cpuUsage || 0}/>
                             <Typography variant="body2">
                                 {cpuUsage.toFixed(2)}%
                             </Typography>
@@ -61,7 +61,7 @@ export default function ResourcesView(props) {
                             <Typography color="textSecondary" gutterBottom>
                                 RAM Usage
                             </Typography>
-                            <LinearProgress variant="determinate" value={ramUsage}/>
+                            <LinearProgress variant="determinate" value={ramUsage || 0}/>
                             <Typography variant="body2">
                                 {ramUsage.toFixed(2)}%
                             </Typography>
@@ -72,7 +72,7 @@ export default function ResourcesView(props) {
                             <Typography color="textSecondary" gutterBottom>
                                 Network Bandwidth
                             </Typography>
-                            <LinearProgress variant="determinate" value={networkBandwidth}/>
+                            <LinearProgress variant="determinate" value={networkBandwidth || 0}/>
                             <Typography variant="body2">
                                 {networkBandwidth.toFixed(2)} Mbps
                             </Typography>
