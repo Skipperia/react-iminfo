@@ -1,7 +1,8 @@
 import React from "react";
 import MainPage from "./Views/MainPage.jsx";
 import Footer from "./components/Footer.jsx";
-import {PrimeReactProvider} from 'primereact/api';
+import { PrimeReactProvider } from 'primereact/api';
+import AdvancedViewProvider from "./utils/AdvancedContext.js";
 
 
 function App() {
@@ -12,8 +13,10 @@ function App() {
 
     return (
         <PrimeReactProvider value={value}>
-            <MainPage/>
-            <Footer/>
+            <AdvancedViewProvider>
+                <MainPage />
+                <Footer />
+            </AdvancedViewProvider>
         </PrimeReactProvider>
     );
 }
