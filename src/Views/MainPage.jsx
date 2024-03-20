@@ -10,7 +10,6 @@ import { AdvancedViewContext } from '../utils/AdvancedContext.js';
 
 const MainPage = () => {
     const { isAdvancedView, setIsAdvancedView } = useContext(AdvancedViewContext);
-    console.log(isAdvancedView);
     const toggleAdvancedView = () => {
         setIsAdvancedView(!isAdvancedView)
     }
