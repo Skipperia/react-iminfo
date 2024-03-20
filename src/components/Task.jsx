@@ -12,7 +12,6 @@ const Task = () => {
 
     useEffect(() => {
         window.electron.on('responseTaskData', (receivedData) => {
-            console.log(receivedData);
             setTaskData(receivedData);
         });
         // Request data from the main process

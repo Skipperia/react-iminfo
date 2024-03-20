@@ -3,7 +3,7 @@ import '../assets/styles/AgentInfoView.css'
 import React, {useState, useEffect} from "react";
 import * as api from "../utils/api";
 
-function AgentInfoView(props) {
+function AgentInfoView( ) {
     const [agentData, setAgentData] = useState({});
 
     useEffect(() => {

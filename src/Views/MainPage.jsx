@@ -22,7 +22,7 @@ const MainPage = () => {
             <h1> Shalom to iminfo</h1>
             <p>here you get all your task info and how map download fails</p>
             {/*<Button label="Advanced View" size='small' onClick={toggleAdvancedView} outlined/>*/}
-            <ToggleButton onChange={toggleAdvancedView} outlined></ToggleButton>
+            <ToggleButton onLabel="Disable Advanced View" offLabel="Enable Advanced View" onChange={toggleAdvancedView} checked={isAdvancedView} outlined></ToggleButton>
             <TaskInfoView isAdvancedView={isAdvancedView}/>
             <ResourcesView isAdvancedView={isAdvancedView}/>
             <AgentInfoView isAdvancedView={isAdvancedView}/>

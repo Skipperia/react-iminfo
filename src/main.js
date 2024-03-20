@@ -111,9 +111,9 @@ ipcMain.on('notification', (event, data) => {
 });
 
 ipcMain.on('getTaskData', (event, arg) => {
-    console.log(arg);
     const data = {taskName: "download", progress: 50, component: "maps"};
 
+    //here request
     event.reply('responseTaskData', data);
 });
 
