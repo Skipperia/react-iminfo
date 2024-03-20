@@ -35,20 +35,42 @@ const Task = () => {
         setTimeout(closePopup, 3000);
     };
 
-
-    return (
-        <Card className="Task">
+    const noRunningTaskComp = () => {
+        (<div>
             <li>component: {taskData.component}</li>
             <li>task: {taskData.taskName}</li>
             <CardContent>
                 <Typography color="textSecondary" gutterBottom>
                     {taskData.component} installation progress
                 </Typography>
-                <LinearProgress variant="determinate" value={taskData.progress}/>
+                <LinearProgress variant="determinate" value={taskData.progress || 0}/>
                 <Typography variant="body2">
                     {taskData.progress}%
                 </Typography>
             </CardContent>
+        </div>)
+    }
+
+    const runningTaskComp = () => {
+        return (<div>
+            <li>component: {taskData.component}</li>
+            <li>task: {taskData.taskName}</li>
+            <CardContent>
+                <Typography color="textSecondary" gutterBottom>
+                    {taskData.component} installation progress
+                </Typography>
+                <LinearProgress variant="determinate" value={taskData.progress || 0}/>
+                <Typography variant="body2">
+                    {taskData.progress}%
+                </Typography>
+            </CardContent>
+        </div>)
+    }
+
+
+    return (
+        <Card className="Task">
+            {taskData.progress === 100 ? runningTaskComp() : noRunningTaskComp()}
             <Button label="Primary" size='small' outlined onClick={showPopup}/>
         </Card>
     );
