@@ -1,14 +1,17 @@
 import Agent from "../components/Agent.jsx";
 import '../assets/styles/AgentInfoView.css'
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import * as api from "../utils/api";
+import { AdvancedViewContext } from '../utils/AdvancedContext.js'
 
-function AgentInfoView( ) {
+function AgentInfoView(props) {
     const [agentData, setAgentData] = useState({});
+    const { isAdvancedView } = useContext(AdvancedViewContext);
+
 
     useEffect(() => {
         const intervalFunc = async () => {
-            const updatedAgentData = {ELA: {}, EWA: {}};
+            const updatedAgentData = { ELA: {}, EWA: {} };
             updatedAgentData.ELA = await api.getAgentInfo("ELA");
             updatedAgentData.EWA = await api.getAgentInfo("EWA");
             setAgentData(updatedAgentData);
@@ -23,9 +26,9 @@ function AgentInfoView( ) {
     return (
         <div>
             {
-                props.isAdvancedView && (<div className="AgentInfoView">
-                    <Agent agent="ELA" agentData={agentData.ELA} isAdvancedView={props.isAdvancedView}/>
-                    <Agent agent="EWA" agentData={agentData.EWA} isAdvancedView={props.isAdvancedView}/>
+                isAdvancedView && (<div className="AgentInfoView">
+                    <Agent agent="ELA" agentData={agentData.ELA} />
+                    <Agent agent="EWA" agentData={agentData.EWA} />
                 </div>)
             }
         </div>
