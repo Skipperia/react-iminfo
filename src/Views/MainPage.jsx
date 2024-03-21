@@ -1,12 +1,16 @@
 import Header from "../components/Header.jsx";
-import TaskInfoView from "./TaskInfoView.jsx";
 import AgentInfoView from "./AgentInfoView.jsx";
 import ResourcesView from "./ResourcesView.jsx";
 import { ToggleButton } from 'primereact/togglebutton'
 import '../assets/styles/MainPage.css'
-import React, { useState, useContext } from "react";
-import Switch from '@mui/material/Switch'
+import React, { useContext } from "react";
 import { AdvancedViewContext } from '../utils/AdvancedContext.js';
+import loadable from '@loadable/component';
+
+
+const TaskInfoView = loadable(() => import('./TaskInfoView.jsx'), {
+    fallback: <div>Loading...</div>,
+  });
 
 const MainPage = () => {
     const { isAdvancedView, setIsAdvancedView } = useContext(AdvancedViewContext);
