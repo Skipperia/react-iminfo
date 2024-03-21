@@ -64,7 +64,7 @@ const createWindow = () => {
     //mainWindow.setMenu(null)
 
     // Open the DevTools.
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     let popupWindow;
     // Listen for popup requests
